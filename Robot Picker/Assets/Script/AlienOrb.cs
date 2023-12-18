@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class AlienOrb : MonoBehaviour
 {
-    public static float bottomY = -10f;
+    public static float bottomY = -20f;
+
+    public AudioSource audioSource;
     
     void Start()
     {
@@ -20,6 +22,15 @@ public class AlienOrb : MonoBehaviour
         Renderer rend;
         rend = GetComponent<Renderer>();
         rend.enabled = false;
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        Invoke("DisableSound", 3f);
+    }
+    private void DisableSound()
+    {
+        // Отключаем аудио после заданного времени
+        audioSource.Stop();
     }
 
     void Update()
